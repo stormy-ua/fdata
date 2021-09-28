@@ -1,12 +1,10 @@
 package com.fdata.examples
 
 import com.fdata.core._
-import com.fdata.flink._
-import org.apache.flink.api.scala._
 
 object WordCount {
 
-  private def job(ctx: FDataContext)(
+  def apply(ctx: FDataContext)(
     implicit scoder: ctx.Coder[String], sicoder: ctx.Coder[(String, Int)]): Unit = {
     import ctx.syntax._
 
@@ -19,10 +17,17 @@ object WordCount {
       .saveAsTextFile("/Users/kirillp/tmp/flink_counts.txt")
   }
 
+}
+
+object WordCountFlink  {
+
+  import com.fdata.flink._
+  import org.apache.flink.api.scala._
+
   def main(args: Array[String]): Unit = {
     val ctx = new FlinkContext
 
-    job(ctx)
+    WordCount(ctx)
 
     ctx.run()
   }
