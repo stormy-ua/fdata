@@ -4,6 +4,7 @@ import com.fdata.core._
 
 object WordCount {
 
+  // Define word count job once. The job definition is agnostic of a specific interpreter.
   def apply(ctx: FDataContext)(
     implicit scoder: ctx.Coder[String], sicoder: ctx.Coder[(String, Int)]): Unit = {
     import ctx.syntax._
@@ -19,6 +20,7 @@ object WordCount {
 
 }
 
+// Run the job defined above on Apache Flink.
 object WordCountFlink  {
 
   import com.fdata.flink._
@@ -34,7 +36,7 @@ object WordCountFlink  {
 
 }
 
-
+// Run the job defined above on scio/Apache Beam.
 object WordCountScio  {
 
   import com.fdata.scio._
