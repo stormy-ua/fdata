@@ -1,5 +1,7 @@
 package com.fdata.core
 
+import com.fdata.core.syntax.FCollectionSyntax
+
 trait FDataContext {
 
   type Coder[T]

@@ -1,6 +1,6 @@
 package com.fdata.flink.ops
 
-import com.fdata.core.StringFCollectionOps
+import com.fdata.core.ops.StringFCollectionOps
 import com.fdata.flink.FlinkFCollection
 import com.fdata.flink.coders.FlinkCoder
 

@@ -1,4 +1,6 @@
-package com.fdata.core
+package com.fdata.core.syntax
+
+import com.fdata.core.ops.{FCollectionOps, KeyedFCollectionOps, StringFCollectionOps}
 
 trait FCollectionSyntax[FCollection[_], Coder[_]] {
 

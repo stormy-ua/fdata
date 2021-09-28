@@ -1,6 +1,8 @@
 package com.fdata.flink.syntax
 
 import com.fdata.core._
+import com.fdata.core.ops.{FCollectionOps, KeyedFCollectionOps, StringFCollectionOps}
+import com.fdata.core.syntax.FCollectionSyntax
 import com.fdata.flink.FlinkFCollection
 import com.fdata.flink.coders.FlinkCoder
 import com.fdata.flink.ops._

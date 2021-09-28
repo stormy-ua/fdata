@@ -1,4 +1,4 @@
-package com.fdata.core
+package com.fdata.core.ops
 
 trait FCollectionOps[FCollection[_], Coder[_], T] {
 
