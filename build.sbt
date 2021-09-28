@@ -3,6 +3,8 @@ import Keys._
 
 val flinkVersion = "1.13.2"
 val slf4jVersion = "1.7.32"
+val beamVersion = "2.32.0"
+val scioVersion = "0.11.0"
 
 val commonSettings = Def.settings(
   scalacOptions ++= Seq(
@@ -10,13 +12,14 @@ val commonSettings = Def.settings(
     "-language:experimental.macros",
     "-language:higherKinds",
     "-language:implicitConversions",
-  )
+  ),
+  resolvers += "confluent" at "https://packages.confluent.io/maven/"
 )
 
 lazy val root = (project in file(".")).
    settings(
      inThisBuild(List(
-       organization := "ch.epfl.scala",
+       organization := "com.fdata",
        scalaVersion := "2.12.15"
      )),
      name := "fdata"
@@ -31,7 +34,7 @@ lazy val `fdata-examples` = project
        "org.apache.flink" %% "flink-scala" % flinkVersion,
        "org.slf4j" % "slf4j-simple" % "1.7.32"
      )
-   ).dependsOn(`fdata-core`, `fdata-flink`)
+   ).dependsOn(`fdata-core`, `fdata-flink`, `fdata-scio`)
 
 lazy val `fdata-core` = project
   .in(file("fdata-core"))
@@ -44,6 +47,19 @@ lazy val `fdata-flink` = project
     libraryDependencies ++= Seq(
       "org.apache.flink" %% "flink-clients" % flinkVersion,
       "org.apache.flink" %% "flink-scala" % flinkVersion,
+      "org.slf4j" % "slf4j-simple" % slf4jVersion
+    )
+  ).dependsOn(`fdata-core`)
+
+lazy val `fdata-scio` = project
+  .in(file("fdata-scio"))
+  .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.spotify" %% "scio-core" % scioVersion,
+      "com.spotify" %% "scio-test" % scioVersion % "test",
+      "org.apache.beam" % "beam-runners-direct-java" % beamVersion,
+      "org.apache.beam" % "beam-runners-google-cloud-dataflow-java" % beamVersion,
       "org.slf4j" % "slf4j-simple" % slf4jVersion
     )
   ).dependsOn(`fdata-core`)

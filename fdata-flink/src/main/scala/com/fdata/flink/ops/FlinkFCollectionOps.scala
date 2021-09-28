@@ -33,6 +33,6 @@ class FlinkStringFCollectionOps(coll: FlinkFCollection[String])
   extends StringFCollectionOps[FlinkFCollection, FlinkCoder] {
 
   def saveAsTextFile(path: String): Unit =
-    coll.internal.setParallelism(1).writeAsText(path)
+    coll.internal.writeAsText(path)
 
 }
