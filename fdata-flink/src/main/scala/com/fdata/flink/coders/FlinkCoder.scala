@@ -27,4 +27,5 @@ final class FlinkCoderInstances extends FCoderInstances[FlinkCoder] {
     implicit val ti2 = t2Coder.typeInfo
     new FlinkCoder(implicitly[ClassTag[(T1, T2)]], implicitly[TypeInformation[(T1, T2)]])
   }
+
 }

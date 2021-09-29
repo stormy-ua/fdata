@@ -24,7 +24,7 @@ lazy val root = (project in file(".")).
        scalaVersion := "2.12.15"
      )),
      name := "fdata"
-   ).aggregate(`fdata-examples`, `fdata-core`, `fdata-flink`)
+   ).aggregate(`fdata-examples`, `fdata-core`, `fdata-flink`, `fdata-scio`, `fdata-mock`)
 
 lazy val `fdata-examples` = project
    .in(file("fdata-examples"))
@@ -36,11 +36,18 @@ lazy val `fdata-examples` = project
        "org.slf4j" % "slf4j-simple" % "1.7.32",
        "org.apache.avro" % "avro" % avroVersion
      )
-   ).dependsOn(`fdata-core`, `fdata-flink`, `fdata-scio`)
+   )
+  .dependsOn(`fdata-core`, `fdata-flink`, `fdata-scio`, `fdata-mock`)
+  .enablePlugins(SbtAvro)
 
 lazy val `fdata-core` = project
   .in(file("fdata-core"))
   .settings(commonSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.apache.avro" % "avro" % avroVersion
+    )
+  )
 
 lazy val `fdata-flink` = project
   .in(file("fdata-flink"))
@@ -49,6 +56,7 @@ lazy val `fdata-flink` = project
     libraryDependencies ++= Seq(
       "org.apache.flink" %% "flink-clients" % flinkVersion,
       "org.apache.flink" %% "flink-scala" % flinkVersion,
+      "org.apache.flink" % "flink-avro" % flinkVersion,
       "org.slf4j" % "slf4j-simple" % slf4jVersion
     )
   ).dependsOn(`fdata-core`)
@@ -65,3 +73,8 @@ lazy val `fdata-scio` = project
       "org.slf4j" % "slf4j-simple" % slf4jVersion
     )
   ).dependsOn(`fdata-core`)
+
+lazy val `fdata-mock` = project
+  .in(file("fdata-mock"))
+  .settings(commonSettings)
+  .dependsOn(`fdata-core`)
