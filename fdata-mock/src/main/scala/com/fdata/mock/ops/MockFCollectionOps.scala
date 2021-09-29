@@ -26,5 +26,5 @@ class MockKeyedFCollectionOps[K, V](coll: List[(K, V)])
 class MockStringFCollectionOps(ctx: MockFContext, coll: List[String])
   extends StringFCollectionOps[List, MockCoder] {
 
-  def saveAsTextFile(path: String): Unit = System.out.println(coll)
+  def saveAsTextFile(path: String): Unit = ()
 }

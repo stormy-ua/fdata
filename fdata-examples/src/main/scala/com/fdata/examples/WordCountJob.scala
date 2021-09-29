@@ -69,7 +69,7 @@ object WordCountMockJob  {
     val ctx = new MockFContext
 
     val counts = WordCountJob(ctx)
-
+    System.out.println(counts)
 
     ctx.run()
   }
