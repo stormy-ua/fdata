@@ -18,4 +18,4 @@
 
 ## Quickstart
 
-[WordCount](fdata-examples/src/main/scala/com/fdata/examples/WordCount.scala) example.
+[WordCount](fdata-examples/src/main/scala/com/fdata/examples/WordCountJob.scala) example.
