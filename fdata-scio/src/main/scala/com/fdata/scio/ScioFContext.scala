@@ -2,6 +2,7 @@ package com.fdata.scio
 
 import com.fdata.core.FDataContext
 import com.fdata.scio
+import com.fdata.scio.coders.ScioCoderInstances
 import com.fdata.scio.syntax.ScioFCollectionSyntax
 import com.spotify.scio.ScioContext
 import com.spotify.scio.coders.{Coder => SCoder}
@@ -14,6 +15,7 @@ final class ScioFContext extends FDataContext {
   private val sc = ScioContext()
 
   val syntax = new ScioFCollectionSyntax
+  val coders = new ScioCoderInstances
 
   def parallelize[T: SCoder](data: T*): ScioFCollection[T] =
     scio.ScioFCollection(sc.parallelize(data.toIterable))

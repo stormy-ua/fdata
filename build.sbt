@@ -5,6 +5,7 @@ val flinkVersion = "1.13.2"
 val slf4jVersion = "1.7.32"
 val beamVersion = "2.32.0"
 val scioVersion = "0.11.0"
+val avroVersion = "1.8.2"
 
 val commonSettings = Def.settings(
   scalacOptions ++= Seq(
@@ -32,7 +33,8 @@ lazy val `fdata-examples` = project
      libraryDependencies ++= Seq(
        "org.apache.flink" %% "flink-clients" % flinkVersion,
        "org.apache.flink" %% "flink-scala" % flinkVersion,
-       "org.slf4j" % "slf4j-simple" % "1.7.32"
+       "org.slf4j" % "slf4j-simple" % "1.7.32",
+       "org.apache.avro" % "avro" % avroVersion
      )
    ).dependsOn(`fdata-core`, `fdata-flink`, `fdata-scio`)
 

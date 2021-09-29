@@ -1,7 +1,7 @@
 package com.fdata.flink
 
 import com.fdata.core._
-import com.fdata.flink.coders.FlinkCoder
+import com.fdata.flink.coders._
 import com.fdata.flink.syntax.FlinkFCollectionSyntax
 import org.apache.flink.api.scala.ExecutionEnvironment
 
@@ -11,6 +11,7 @@ final class FlinkContext extends FDataContext {
   type Coder[T] = FlinkCoder[T]
 
   val syntax = new FlinkFCollectionSyntax
+  val coders = new FlinkCoderInstances
 
   private val ctx = ExecutionEnvironment.getExecutionEnvironment
 

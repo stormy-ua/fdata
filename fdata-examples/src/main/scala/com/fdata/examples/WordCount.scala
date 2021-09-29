@@ -5,9 +5,9 @@ import com.fdata.core._
 object WordCount {
 
   // Define word count job once. The job definition is agnostic of a specific interpreter.
-  def apply(ctx: FDataContext)(
-    implicit scoder: ctx.Coder[String], sicoder: ctx.Coder[(String, Int)]): Unit = {
+  def apply(ctx: FDataContext): Unit = {
     import ctx.syntax._
+    import ctx.coders._
 
     ctx
       .parallelize("Who's there?", "I think I hear them. Stand, ho! Who's there?")
